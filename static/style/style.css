@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100i,400,700');
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +9,69 @@ body {
   width: 100%;
   height: 100vh;
   width: 100vw;
-  background-color: red;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #192C47;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+nav {
+  width: 100%;
+  height: 4em;
+  margin: 0 0 2em 0;
+  background-color: white;
+  border-radius: 0 0 7px 7px;
+}
+
+#hightlight {
+}
+
+#hightlight img {
+  object-fit: cover;
+  max-height: 50vh;
+  width: 100%;
+}
+
+main {
+  margin: 0 1em 1em 1em;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: calc(100% - 2em) ;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  grid-gap: 2em;
+  padding: 1em;
+}
+
+main a {
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+
+main a:hover, main a:focus {
+  background-color: rgba(0, 0, 0, .1);
+  outline: none;
+}
+
+main img {
+  border-radius: 5px;
+  width: 100%;
+}
+
+main h2 {
+  font-weight: 700;
+  font-size: 1em;
+  color: #192C47;
+  margin: 7px 0 5px 0;
+}
+
+main h3 {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #0093C6;
+  opacity: 0.8;
+  margin: 0;
 }
