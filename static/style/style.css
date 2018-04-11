@@ -16,14 +16,85 @@ body {
 
 
 nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 4em;
-  margin: 0 0 2em 0;
+  height: 5em;
+  margin: 0 0 0em 0;
+  padding: 0.3em 2em;
   background-color: white;
   border-radius: 0 0 7px 7px;
 }
 
+nav img, nav .search {
+  height: 70%;
+  cursor: pointer;
+  display: flex;
+}
+
+nav .search input {
+  height: 100%;
+  margin: 0;
+  padding: 0.4em;
+  border: none;
+  background-color: #54BAD8;
+  width: 20em;
+  display: none;
+}
+
+nav .search input.active {
+  display: block;
+}
+
+nav .search input, nav .search input::placeholder {
+  color: white;
+  font-size: 1em;
+}
+
+
+nav .search  img {
+  height: 100%;
+}
+
 #hightlight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 1em 0;
+  position: relative;
+}
+
+#hightlight::after {
+  background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.9));
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#hightlight .textOverlay {
+  z-index: 3;
+  padding-right: 0.7em;
+  text-align: right;
+  position: absolute;
+  color: white;
+  font-size: 1.5em;
+}
+
+#hightlight .textOverlay h2 {
+  margin-top: 0;
+}
+
+#hightlight .textOverlay h2:first-of-type {
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+
+#hightlight .textOverlay a {
+  color: inherit;
+  font-size: 2em;
+  /* text-decoration: none; */
 }
 
 #hightlight img {
@@ -33,25 +104,59 @@ nav {
 }
 
 main {
-  margin: 0 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0em 1em 0em;
   border-radius: 10px;
+  padding: 1em;
   background-color: rgba(255, 255, 255, 0.95);
-  width: calc(100% - 2em) ;
+  width: calc(100% - 0em) ;
+}
+
+main > span {
+  margin: 1.3em 0 2em 0;
+}
+
+main > span a {
+  font-size: 1.2em;
+  padding: 0.3em 0.6em;
+  text-decoration: none;
+  color: #192C47;
+  opacity: 0.6;
+}
+
+main > span a:hover, main > span a:focus {
+  opacity: 1;
+}
+
+main > span a.active {
+  opacity: 1;
+  cursor: auto;
+}
+
+main > span a:first-of-type {
+  border-right: 2px solid rgba(25, 44, 71, 0.6);
+}
+
+main .serieGrid {
+  width: 100%;
+  max-width: 90em;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-  grid-gap: 2em;
-  padding: 1em;
+  grid-gap: 1em;
 }
 
-main a {
+main .serieGrid a {
   cursor: pointer;
-  padding: 0.5em;
+  padding: 1em;
   border-radius: 5px;
   text-decoration: none;
+  transition: 0.3s all;
 }
 
 
-main a:hover, main a:focus {
+main .serieGrid a:hover, main .serieGrid a:focus {
   background-color: rgba(0, 0, 0, .1);
   outline: none;
 }
@@ -61,14 +166,14 @@ main img {
   width: 100%;
 }
 
-main h2 {
+main .serieGrid h2 {
   font-weight: 700;
   font-size: 1em;
   color: #192C47;
   margin: 7px 0 5px 0;
 }
 
-main h3 {
+main .serieGrid h3 {
   font-weight: 400;
   font-size: 0.8em;
   color: #0093C6;

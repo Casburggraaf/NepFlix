@@ -5,26 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style/style.css">
-  <title>Serie DB</title>
+  <title>Nepflix</title>
 </head>
 <body>
-  <nav>hello world</nav>
+  <nav>
+    <img src="style/logo.svg" alt="">
+    <div class="search">
+      <input type="text" name="" value="" placeholder="Search....">
+      <img src="style/search.svg" alt="">
+    </div>
+  </nav>
 
   <% { let random = Math.floor(Math.random() * data.length) %>
       <section id="hightlight">
-        <h2>New popular</h2>
-        <h2><a href="/detail/<%=data[random].id%>" ><%=data[random].original_name%></a></h2>
+        <section class="textOverlay">
+          <h2>New Popular</h2>
+          <h2><a href="/detail/<%=data[random].id%>" ><%=data[random].original_name%></a></h2>
+        </section>
         <img src="https://image.tmdb.org/t/p/original/<%=data[random].backdrop_path%>" alt="">
       </section>
   <% } %>
   <main>
-    <% for(let i = 0; i < data.length; i++){ %>
-      <a tabindex="<%= i + 1 %>" href="/detail/<%=data[i].id %>">
-        <img alt="<%= data[i].original_name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
-        <h2><%= data[i].original_name %></h2>
-        <h3>Vote average <%= data[i].vote_average %></h3>
-      </a>
-    <% } %>
+    <span><a class="active" href="#">Popular</a><a href="#">Releases date</a></span>
+    <div class="serieGrid">
+      <% for(let i = 0; i < data.length; i++){ %>
+        <a tabindex="<%= i + 1 %>" href="/detail/<%=data[i].id %>">
+          <img alt="<%= data[i].original_name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
+          <h2><%= data[i].original_name %></h2>
+          <h3>Vote average <%= data[i].vote_average %></h3>
+        </a>
+      <% } %>
+    </div>
   </main>
 
   <script type="text/javascript" src="js/app.js" charset="utf-8"></script>
