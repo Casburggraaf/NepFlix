@@ -8,7 +8,7 @@ express()
   .set('views', 'view')
   .get('/', index)
   .get('/index.html', index)
-  .listen(3003)
+  .listen(3006)
 
 
 function index(req, res) {

@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style/style.css">
   <title>Nepflix</title>
+  <script>
+    window.data = <%- JSON.stringify(data || null) %>;
+  </script>
 </head>
 <body>
   <nav>
@@ -29,14 +32,35 @@
     <span><a class="active" href="#">Popular</a><a href="#">Releases date</a></span>
     <div class="serieGrid">
       <% for(let i = 0; i < data.length; i++){ %>
-        <a tabindex="<%= i + 1 %>" href="/detail/<%=data[i].id %>">
-          <img alt="<%= data[i].original_name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
+        <a tabindex="<%= i + 1 %>" data-id="<%= i %>">
+          <div>
+            <div class="showMore">
+              <span>show more</span>
+              <img src="style/plus.svg">
+            </div>
+            <img alt="<%= data[i].original_name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
+          </div>
           <h2><%= data[i].original_name %></h2>
           <h3>Vote average <%= data[i].vote_average %></h3>
         </a>
       <% } %>
     </div>
   </main>
+
+  <section id="detailPage">
+    <span class="close">X</span>
+    <h2></h2>
+    <img src="" alt="">
+    <div class="details">
+      <p class="overview"></p>
+      <p class="vote"></p>
+    </div>
+  </section>
+
+  <div class="detailPageBack">
+
+  </div>
+
 
   <script type="text/javascript" src="js/app.js" charset="utf-8"></script>
 </body>

@@ -21,7 +21,7 @@ nav {
   width: 100%;
   height: 5em;
   margin: 0;
-  padding: 0.3em 2em;
+  padding: 0.3em 3em;
   background-color: white;
   border-radius: 0 0 7px 7px;
 }
@@ -69,7 +69,7 @@ nav .search img {
 }
 
 #hightlight::after {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   content: "";
   width: 100%;
   height: 100%;
@@ -78,7 +78,7 @@ nav .search img {
 
 #hightlight .textOverlay {
   z-index: 3;
-  padding-right: 0.7em;
+  padding-right: 1.6em;
   text-align: right;
   position: absolute;
   color: white;
@@ -146,8 +146,8 @@ main .serieGrid {
   width: 100%;
   max-width: 90em;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+  grid-gap: 2em;
 }
 
 main .serieGrid a {
@@ -164,9 +164,39 @@ main .serieGrid a:focus {
   outline: none;
 }
 
-main img {
+main .serieGrid div {
+  position: relative;
+}
+
+main .serieGrid div div{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 99%;
+  background-color: #192C47;
+  opacity: 0.9;
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  opacity: 0;
+}
+
+main .serieGrid div div img {
+  margin-top: 1em;
+  width: 40%;
+}
+
+main .serieGrid img {
   border-radius: 5px;
   width: 100%;
+}
+
+main .serieGrid .showMore.hover {
+  opacity: 0.6;
 }
 
 main .serieGrid h2 {
@@ -180,6 +210,80 @@ main .serieGrid h3 {
   font-weight: 400;
   font-size: 0.8em;
   color: #0093C6;
-  opacity: 0.8;
+  opacity: 0.7;
   margin: 0;
+}
+
+#detailPage {
+  padding: 2em;
+  margin-left: 5vw;
+  background-color: #192C47;
+  border-radius: 5px;
+  position: fixed;
+  width: 90vw;
+  height: 96vh;
+  top: 100vh;
+  z-index: 4;
+  transition: all 400ms ease;
+  opacity: 0.3;
+}
+
+#detailPage.hover {
+  top: 93vh;
+  opacity: 0.8;
+}
+
+#detailPage.active {
+  opacity: 1;
+  top: 5vh;
+}
+
+#detailPage h2 {
+  color: white;
+  text-align: center;
+  opacity: 0.8;
+  margin-top: -0.2em;
+}
+
+#detailPage > span {
+  margin-top: -1.2em;
+  color: white;
+  font-size: 2em;
+  display: none;
+  position: absolute;
+  opacity: 0;
+  padding: 0.51em;
+}
+
+#detailPage.active > span {
+  display: block;
+  opacity: 1;
+}
+
+#detailPage .details, #detailPage img {
+float: left;
+}
+
+#detailPage .details {
+  width: 60%;
+  margin-left: 2em;
+}
+
+#detailPage p {
+  color: white;
+}
+
+.detailPageBack {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.3;
+  top: 0;
+  z-index: 3;
+}
+
+.detailPageBack.active {
+  display: block;
 }
