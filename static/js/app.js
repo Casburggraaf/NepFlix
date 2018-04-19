@@ -1,14 +1,14 @@
 (function () {
   "use strict";
 
-  var app = {
+  const app = {
     init: function() {
       const serieItems = document.querySelectorAll(".serieGrid > a");
       const detailPage = document.querySelector("#detailPage");
       const detailPageBack = document.querySelector(".detailPageBack");
 
       document.querySelector(".search img").addEventListener("click", function () {
-        document.querySelector(".search input").classList.toggle("active");
+        document.querySelector("nav").classList.toggle("active");
       });
 
       document.querySelector("#detailPage .close").addEventListener("click", function () {
@@ -40,7 +40,7 @@
           document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
           document.querySelector("#detailPage .overview").innerHTML = "";
           document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
-          console.log(window.data[this.dataset.id]);
+          //console.log(window.data[this.dataset.id]);
         });
         el.addEventListener("mouseleave", function () {
           detailPage.classList.remove("hover");
@@ -53,6 +53,41 @@
       });
 
     }
+  }
+
+  const api = {
+    apiBasisUrl: "https://api.themoviedb.org/3/search/tv",
+    apiKey: "d9a167a57e748b4a804b41f0186b2339",
+    data: null,
+    autoCompleteReq(query) {
+      const _this = this;
+      // Makes a promise for the XMLHttpRequest request
+      const promise = new Promise(function (resolve, reject) {
+        const request = new XMLHttpRequest();
+
+        // Making the url and creating a GET request
+        const url = `${_this.apiBasisUrl}?api_key=${_this.apiKey}&query=${query}`;
+
+        request.open('GET', url, true);
+
+        request.onload = function () {
+          if (request.status >= 200 && request.status < 400) {
+            console.log(JSON.parserequest.responseText);
+            resolve();
+          } else {
+            reject(request.status); // Error handeling
+          }
+        };
+
+        request.onerror = function () {
+          reject("Failed to proform api req"); // Error handeling
+        };
+
+        request.send();
+      });
+
+      return promise;
+    },
   }
 
   app.init()

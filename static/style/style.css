@@ -31,6 +31,8 @@ nav .search {
   height: 70%;
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav .search input {
@@ -38,22 +40,52 @@ nav .search input {
   margin: 0;
   padding: 0.4em;
   border: none;
-  background-color: #54BAD8;
+  background-color: #1794c4;
   width: 0;
   opacity: 0;
-  transition: opacity 0s ease 200ms, width 200ms ease 0s;
+  transition: opacity 0s ease 300ms, width 300ms ease 0s;
 }
 
-nav .search input.active {
+nav.active .search input {
+  outline: white;
   opacity: 1;
-  width: 20em;
-  transition: opacity 0s ease 0s, width 200ms ease 0s;
+  width: 90vw;
+  transition: opacity 0s ease 0s, width 300ms ease 0s;
+}
+
+nav.active {
+  background-color: #1794c4;
+}
+
+nav > img {
+  transition: all 300ms;
+}
+nav.active > img {
+  opacity: 0;
+  width: 0;
+}
+
+#hightlight, main, nav{
+  z-index: 1;
+  transition: all 200ms;
+}
+
+nav.active + #hightlight{
+  transition: all 400ms;
+  margin-top: -24vh;
+  z-index: -1;
+}
+
+nav.active ~ main {
+  transition: all 400ms;
+  margin-top: -22vh;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 nav .search input,
 nav .search input::placeholder {
   color: white;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 nav .search img {
@@ -224,7 +256,7 @@ main .serieGrid h3 {
   height: 96vh;
   top: 100vh;
   z-index: 4;
-  transition: all 400ms ease;
+  transition: all 600ms ease;
   opacity: 0.3;
 }
 
@@ -279,7 +311,7 @@ float: left;
   width: 100vw;
   height: 100vh;
   background-color: black;
-  opacity: 0.3;
+  opacity: 0.4;
   top: 0;
   z-index: 3;
 }
