@@ -31,8 +31,12 @@ nav .search {
   height: 70%;
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+}
+
+.search {
+  position: relative;
 }
 
 nav .search input {
@@ -40,52 +44,66 @@ nav .search input {
   margin: 0;
   padding: 0.4em;
   border: none;
-  background-color: #1794c4;
-  width: 0;
+  background-color: white;
+  width: 40vw;
+  outline: white;
   opacity: 0;
-  transition: opacity 0s ease 300ms, width 300ms ease 0s;
+  transition: opacity 0s ease 200ms, width 300ms ease 0s, background-color 200ms ease 0s;;
 }
 
 nav.active .search input {
-  outline: white;
   opacity: 1;
+  z-index: 2;
+  /* background: transparent; */
+  background-color: #1794c4;
   width: 90vw;
-  transition: opacity 0s ease 0s, width 300ms ease 0s;
+  transition: opacity 0s ease 0s, width 300ms ease 0s, background-color 200ms ease 0s;;
+}
+
+nav.active .search .autoComplete {
+  width: 90vw;
+  position: absolute;
+  padding: 0.4em;
+  opacity: 0.6;
+  z-index: 3;
+  height: 100%;
+  user-select: none;
+}
+
+nav.active .search .autoComplete span {
+  visibility: hidden;
 }
 
 nav.active {
+  transition: background-color 200ms ease 0s;
   background-color: #1794c4;
 }
 
-nav > img {
-  transition: all 300ms;
+nav {
+  transition: background-color 200ms ease 0s;
 }
 nav.active > img {
   opacity: 0;
   width: 0;
 }
 
-#hightlight, main, nav{
-  z-index: 1;
-  transition: all 200ms;
-}
-
 nav.active + #hightlight{
   transition: all 400ms;
-  margin-top: -24vh;
+  max-height: 0;
   z-index: -1;
 }
 
-nav.active ~ main {
+nav.active + #hightlight img {
   transition: all 400ms;
-  margin-top: -22vh;
-  background-color: rgba(255, 255, 255, 1);
+  max-height: 0;
 }
 
 nav .search input,
-nav .search input::placeholder {
+nav .search input::placeholder,
+nav .search .autoComplete {
   color: white;
-  font-size: 1.3em;
+  font-size: 1.5rem;
+
 }
 
 nav .search img {
@@ -98,6 +116,9 @@ nav .search img {
   align-items: flex-end;
   margin: 1em 0;
   position: relative;
+  max-height: 60vh;
+  transition: all 400ms;
+  z-index: -1;
 }
 
 #hightlight::after {
@@ -133,7 +154,7 @@ nav .search img {
 
 #hightlight img {
   object-fit: cover;
-  max-height: 50vh;
+  max-height: 60vh;
   width: 100%;
 }
 

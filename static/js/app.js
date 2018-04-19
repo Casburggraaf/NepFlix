@@ -3,12 +3,16 @@
 
   const app = {
     init: function() {
+      autocomplete.init();
+
       const serieItems = document.querySelectorAll(".serieGrid > a");
       const detailPage = document.querySelector("#detailPage");
       const detailPageBack = document.querySelector(".detailPageBack");
 
       document.querySelector(".search img").addEventListener("click", function () {
         document.querySelector("nav").classList.toggle("active");
+        document.querySelector(".autoComplete").innerHTML = "";
+        document.querySelector(".search input").focus();
       });
 
       document.querySelector("#detailPage .close").addEventListener("click", function () {
@@ -22,12 +26,16 @@
       });
 
       window.onkeyup = function(e) {
-        var key = e.keyCode ? e.keyCode : e.which;
-        if (key === 27) {
-          detailPage.classList.remove("active");
-          detailPageBack.classList.remove("active");
+        if (document.querySelector("#detailPage").classList.contains("active")) {
+          let key = e.keyCode ? e.keyCode : e.which;
+          if (key === 27) {
+            detailPage.classList.remove("active");
+            detailPageBack.classList.remove("active");
+          }
         }
       };
+
+
 
       serieItems.forEach(function(el) {
         el.addEventListener("mouseenter", function () {
@@ -40,7 +48,6 @@
           document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
           document.querySelector("#detailPage .overview").innerHTML = "";
           document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
-          //console.log(window.data[this.dataset.id]);
         });
         el.addEventListener("mouseleave", function () {
           detailPage.classList.remove("hover");
@@ -72,7 +79,7 @@
 
         request.onload = function () {
           if (request.status >= 200 && request.status < 400) {
-            console.log(JSON.parserequest.responseText);
+            api.data = JSON.parse(request.responseText).results;
             resolve();
           } else {
             reject(request.status); // Error handeling
@@ -88,6 +95,59 @@
 
       return promise;
     },
+  }
+
+  const autocomplete = {
+    inputField: document.querySelector(".search input"),
+    autoCompleteElement: document.querySelector(".search .autoComplete"),
+    inputValue: null,
+    data: null,
+    init() {
+      this.autoCompleteElement.addEventListener("click", () => {
+        this.inputField.focus();
+        this.autoComplete();
+      });
+
+      this.inputField.addEventListener("keydown", (e) => {
+        console.log(e.keyCode);
+        let key = e.keyCode ? e.keyCode : e.which;
+        if (key === 9) {
+          e.preventDefault();
+          this.autoComplete();
+        }
+      });
+
+      this.inputField.addEventListener("input", (evt) => {
+        this.autoCompleteElement.innerHTML = "";
+        this.inputValue = evt.target.value;
+
+        if (this.inputValue !== "") {
+          api.autoCompleteReq(this.inputValue).then(() => {
+            this.data = api.data.filter((el) => {
+              if (el.name.startsWith(this.inputValue) ) {
+                return true;
+              }
+            });
+            let tempSplit = [this.data[0].name.slice(0,(this.inputField.value.length)),
+                            this.data[0].name.slice(this.inputField.value.length)];
+
+            this.autoCompleteElement.innerHTML = `<span>${tempSplit[0]}</span>${tempSplit[1]}`;
+          }).catch((error) => {
+            this.autoCompleteElement.value = "";
+          });
+        }
+      });
+    },
+    autoComplete() {
+      console.log(this.data);
+      if (this.data !== null && this.data.length !== 0) {
+        this.inputField.value = this.data[0].name;
+
+        let tempSplit = [this.data[0].name.slice(0,(this.inputField.value.length)),
+                        this.data[0].name.slice(autocomplete.inputField.value.length)];
+        this.autoCompleteElement.innerHTML = `<span>${tempSplit[0]}</span>${tempSplit[1]}`;
+      }
+    }
   }
 
   app.init()
