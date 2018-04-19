@@ -109,7 +109,6 @@
       });
 
       this.inputField.addEventListener("keydown", (e) => {
-        console.log(e.keyCode);
         let key = e.keyCode ? e.keyCode : e.which;
         if (key === 9) {
           e.preventDefault();
@@ -119,6 +118,7 @@
 
       this.inputField.addEventListener("input", (evt) => {
         this.autoCompleteElement.innerHTML = "";
+        try{evt.target.value = evt.target.value.toLowerCase().split(' ').map(x=>x[0].toUpperCase()+x.slice(1)).join(' ');} catch(error) {};
         this.inputValue = evt.target.value;
 
         if (this.inputValue !== "") {
@@ -139,7 +139,6 @@
       });
     },
     autoComplete() {
-      console.log(this.data);
       if (this.data !== null && this.data.length !== 0) {
         this.inputField.value = this.data[0].name;
 
