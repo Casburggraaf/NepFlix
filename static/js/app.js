@@ -118,7 +118,7 @@
 
       this.inputField.addEventListener("input", (evt) => {
         this.autoCompleteElement.innerHTML = "";
-        try{evt.target.value = evt.target.value.toLowerCase().split(' ').map(x=>x[0].toUpperCase()+x.slice(1)).join(' ');} catch(error) {};
+        // try{evt.target.value = evt.target.value.toLowerCase().split(' ').map(x=>x[0].toUpperCase()+x.slice(1)).join(' ');} catch(error) {};
         this.inputValue = evt.target.value;
 
         if (this.inputValue !== "") {

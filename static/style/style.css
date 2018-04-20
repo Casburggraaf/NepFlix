@@ -68,6 +68,7 @@ nav.active .search .autoComplete {
   z-index: 3;
   height: 100%;
   user-select: none;
+  top: -1px;
 }
 
 nav.active .search .autoComplete span {
@@ -102,8 +103,8 @@ nav .search input,
 nav .search input::placeholder,
 nav .search .autoComplete {
   color: white;
+  font: inherit;
   font-size: 1.5rem;
-
 }
 
 nav .search img {
