@@ -30,13 +30,12 @@ nav img,
 nav .search {
   height: 70%;
   cursor: pointer;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
 }
 
 .search {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 nav .search input {
@@ -88,6 +87,12 @@ nav.active > img {
   width: 0;
 }
 
+nav > img {
+  /* transition: all ease 200ms; */
+  opacity: 1;
+  max-width: 100%;
+}
+
 nav.active + #hightlight{
   transition: all 400ms;
   max-height: 0;
@@ -109,6 +114,10 @@ nav .search .autoComplete {
 
 nav .search img {
   height: 100%;
+}
+
+nav .search img[src="style/close.svg"] {
+  height: 70%;
 }
 
 #hightlight {
@@ -202,6 +211,8 @@ main .serieGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
   grid-gap: 2em;
+  min-height: 80vh;
+  align-items: start;
 }
 
 main .serieGrid a {
@@ -210,6 +221,7 @@ main .serieGrid a {
   border-radius: 5px;
   text-decoration: none;
   transition: 0.3s all;
+  max-width: 18em;
 }
 
 main .serieGrid a:hover,
@@ -278,7 +290,7 @@ main .serieGrid h3 {
   height: 96vh;
   top: 100vh;
   z-index: 4;
-  transition: all 600ms ease;
+  transition: top 600ms ease;
   opacity: 0.3;
 }
 
@@ -340,4 +352,8 @@ float: left;
 
 .detailPageBack.active {
   display: block;
+}
+
+.hidden {
+  display: none !important;
 }

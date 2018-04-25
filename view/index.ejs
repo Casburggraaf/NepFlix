@@ -31,7 +31,7 @@
   <% } %>
   <main>
     <span><a class="active" href="#">Popular</a><a href="#">Releases date</a></span>
-    <div class="serieGrid">
+    <div class="serieGrid popular">
       <% for(let i = 0; i < data.length; i++){ %>
         <a tabindex="<%= i + 1 %>" data-id="<%= i %>">
           <div>
@@ -39,12 +39,25 @@
               <span>show more</span>
               <img src="style/plus.svg">
             </div>
-            <img alt="<%= data[i].original_name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
+            <img alt="<%= data[i].name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
           </div>
           <h2><%= data[i].original_name %></h2>
           <h3>Vote average <%= data[i].vote_average %></h3>
         </a>
       <% } %>
+    </div>
+    <div class="serieGrid search">
+      <a data-bind="link" data-id="">
+        <div>
+          <div class="showMore">
+            <span>show more</span>
+            <img src="style/plus.svg">
+          </div>
+          <img data-bind="poster_path" alt=""  src="">
+        </div>
+        <h2 data-bind="title"></h2>
+        <h3 data-bind="vote"></h3>
+      </a>
     </div>
   </main>
 
@@ -62,7 +75,7 @@
 
   </div>
 
-
+  <script src="js/transparency.min.js"></script>
   <script type="text/javascript" src="js/app.js" charset="utf-8"></script>
 </body>
 </html>

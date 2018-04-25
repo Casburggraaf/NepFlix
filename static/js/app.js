@@ -10,6 +10,14 @@
       const detailPageBack = document.querySelector(".detailPageBack");
 
       document.querySelector(".search img").addEventListener("click", function () {
+        console.log(this.getAttribute("src"));
+        if(this.getAttribute("src") === "style/search.svg") {
+          this.src = "style/close.svg";
+          document.querySelector(".serieGrid.popular").classList.toggle("hidden");
+        } else {
+          this.src = "style/search.svg";
+          document.querySelector(".serieGrid.popular").classList.toggle("hidden");
+        }
         document.querySelector("nav").classList.toggle("active");
         document.querySelector(".autoComplete").innerHTML = "";
         document.querySelector(".search input").focus();
@@ -41,13 +49,25 @@
         el.addEventListener("mouseenter", function () {
           detailPage.classList.add("hover");
           this.querySelector(".showMore").classList.add("hover");
-          document.querySelector("#detailPage h2").innerHTML = "";
-          document.querySelector("#detailPage h2").appendChild(document.createTextNode(window.data[this.dataset.id].original_name));
-          document.querySelector("#detailPage .vote").innerHTML = "";
-          document.querySelector("#detailPage .vote").appendChild(document.createTextNode(window.data[this.dataset.id].overview));
-          document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
-          document.querySelector("#detailPage .overview").innerHTML = "";
-          document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
+          if (this.parentElement.classList.contains("popular")) {
+            document.querySelector("#detailPage h2").innerHTML = "";
+            document.querySelector("#detailPage h2").appendChild(document.createTextNode(window.data[this.dataset.id].original_name));
+            document.querySelector("#detailPage .vote").innerHTML = "";
+            document.querySelector("#detailPage .vote").appendChild(document.createTextNode(window.data[this.dataset.id].overview));
+            document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
+            document.querySelector("#detailPage .overview").innerHTML = "";
+            document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
+          } else if (this.parentElement.classList.contains("search")) {
+            //
+            // document.querySelector("#detailPage h2").innerHTML = "";
+            // document.querySelector("#detailPage h2").appendChild(document.createTextNode(search.dataParse[this.dataset.id].original_name));
+            // document.querySelector("#detailPage .vote").innerHTML = "";
+            // document.querySelector("#detailPage .vote").appendChild(document.createTextNode(search.dataParse[this.dataset.id].overview));
+            // document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${search.dataParse[this.dataset.id].poster_path}`;
+            // document.querySelector("#detailPage .overview").innerHTML = "";
+            // document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${search.dataParse[this.dataset.id].vote_average} of votes ${search.dataParse[this.dataset.id].vote_count}`));
+          }
+
         });
         el.addEventListener("mouseleave", function () {
           detailPage.classList.remove("hover");
@@ -118,11 +138,11 @@
 
       this.inputField.addEventListener("input", (evt) => {
         this.autoCompleteElement.innerHTML = "";
-        // try{evt.target.value = evt.target.value.toLowerCase().split(' ').map(x=>x[0].toUpperCase()+x.slice(1)).join(' ');} catch(error) {};
         this.inputValue = evt.target.value;
-
         if (this.inputValue !== "") {
           api.autoCompleteReq(this.inputValue).then(() => {
+            search.data = Object.assign({}, this.data);
+            search.transparency();
             this.data = api.data.filter((el) => {
               if (el.name.startsWith(this.inputValue) ) {
                 return true;
@@ -145,6 +165,85 @@
         let tempSplit = [this.data[0].name.slice(0,(this.inputField.value.length)),
                         this.data[0].name.slice(autocomplete.inputField.value.length)];
         this.autoCompleteElement.innerHTML = `<span>${tempSplit[0]}</span>${tempSplit[1]}`;
+      }
+    }
+  }
+
+  const search = {
+    target: document.querySelector(".serieGrid.search"),
+    data: null,
+    dataParse: null,
+    transparency() {
+
+      const directives = {
+        title: {
+          text() {
+            return `${this.name}`;
+          }
+        },
+        poster_path: {
+          src() {
+            if(this.poster_path !== null){
+              return `https://image.tmdb.org/t/p/w342/${this.poster_path}`;
+            } else {
+              return `style/unavailable.jpg`;
+            }
+          }
+        },
+        vote: {
+          text() {
+            if(this.vote_count !== 0){
+              return `Vote average ${this.vote_average}`;
+            } else {
+              return `Vote score Unkown`;
+            }
+
+          }
+        },
+        link: {
+          "data-id"() {
+            return search.dataParse.indexOf(this);
+          }
+        }
+      };
+      console.log(this.data !== null && this.data.length !== 0);
+      if (this.data !== null && this.data.length !== 0) {
+        console.log(this.data);
+        this.dataParse = Object.keys(this.data).map(item => this.data[item]);
+        console.log(this.dataParse);
+        Transparency.render(this.target, this.dataParse, directives);
+
+        var elements = this.target.querySelectorAll("a");
+        const detailPage = document.querySelector("#detailPage");
+        const detailPageBack = document.querySelector(".detailPageBack");
+        
+        elements.forEach((el) => {
+          el.addEventListener("mouseenter", function () {
+            detailPage.classList.add("hover");
+            this.querySelector(".showMore").classList.add("hover");
+            if (this.parentElement.classList.contains("search")) {
+              document.querySelector("#detailPage h2").innerHTML = "";
+              document.querySelector("#detailPage h2").appendChild(document.createTextNode(search.dataParse[this.dataset.id].original_name));
+              document.querySelector("#detailPage .vote").innerHTML = "";
+              document.querySelector("#detailPage .vote").appendChild(document.createTextNode(search.dataParse[this.dataset.id].overview));
+              document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${search.dataParse[this.dataset.id].poster_path}`;
+              document.querySelector("#detailPage .overview").innerHTML = "";
+              document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${search.dataParse[this.dataset.id].vote_average} of votes ${search.dataParse[this.dataset.id].vote_count}`));
+            }
+          });
+
+          el.addEventListener("mouseleave", function () {
+            detailPage.classList.remove("hover");
+            this.querySelector(".showMore").classList.remove("hover");
+          });
+          el.addEventListener("click", function () {
+            detailPage.classList.add("active");
+            detailPageBack.classList.add("active");
+          });
+
+        })
+
+
       }
     }
   }
