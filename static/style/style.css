@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100i,400,700');
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +9,356 @@ body {
   width: 100%;
   height: 100vh;
   width: 100vw;
-  background-color: red;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #192C47;
+  font-family: 'Roboto', sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 5em;
+  margin: 0;
+  padding: 0.3em 3em;
+  background-color: white;
+  border-radius: 0 0 7px 7px;
+}
+
+nav img,
+nav .search {
+  height: 70%;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+nav .search input {
+  height: 100%;
+  margin: 0;
+  padding: 0.4em;
+  border: none;
+  background-color: white;
+  width: 40vw;
+  outline: white;
+  opacity: 0;
+  transition: opacity 0s ease 200ms, width 300ms ease 0s, background-color 200ms ease 0s;;
+}
+
+nav.active .search input {
+  opacity: 1;
+  z-index: 2;
+  /* background: transparent; */
+  background-color: #1794c4;
+  width: 90vw;
+  transition: opacity 0s ease 0s, width 300ms ease 0s, background-color 200ms ease 0s;;
+}
+
+nav.active .search .autoComplete {
+  width: 90vw;
+  position: absolute;
+  padding: 0.4em;
+  opacity: 0.6;
+  z-index: 3;
+  height: 100%;
+  user-select: none;
+  top: -1px;
+}
+
+nav.active .search .autoComplete span {
+  visibility: hidden;
+}
+
+nav.active {
+  transition: background-color 200ms ease 0s;
+  background-color: #1794c4;
+}
+
+nav {
+  transition: background-color 200ms ease 0s;
+}
+nav.active > img {
+  opacity: 0;
+  width: 0;
+}
+
+nav > img {
+  /* transition: all ease 200ms; */
+  opacity: 1;
+  max-width: 100%;
+}
+
+nav.active + #hightlight{
+  transition: all 400ms;
+  max-height: 0;
+  z-index: -1;
+}
+
+nav.active + #hightlight img {
+  transition: all 400ms;
+  max-height: 0;
+}
+
+nav .search input,
+nav .search input::placeholder,
+nav .search .autoComplete {
+  color: white;
+  font: inherit;
+  font-size: 1.5rem;
+}
+
+nav .search img {
+  height: 100%;
+}
+
+nav .search img[src="style/close.svg"] {
+  height: 70%;
+}
+
+#hightlight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 1em 0;
+  position: relative;
+  max-height: 60vh;
+  transition: all 400ms;
+  z-index: -1;
+}
+
+#hightlight::after {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#hightlight .textOverlay {
+  z-index: 3;
+  padding-right: 1.6em;
+  text-align: right;
+  position: absolute;
+  color: white;
+  font-size: 2.1vw;
+}
+
+#hightlight .textOverlay h2 {
+  margin-top: 0;
+}
+
+#hightlight .textOverlay h2:first-of-type {
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+
+#hightlight .textOverlay a {
+  color: inherit;
+  font-size: 2em;
+}
+
+#hightlight .textOverlay a:hover {
+  color: red;
+  display: none;
+}
+
+#hightlight img {
+  object-fit: cover;
+  max-height: 60vh;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 1em 0;
+  border-radius: 10px;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: calc(100% - 0);
+}
+
+main > span {
+  margin: 1.3em 0 2em 0;
+}
+
+main > span a {
+  font-size: 1.2em;
+  padding: 0.3em 0.6em;
+  text-decoration: none;
+  color: #192C47;
+  opacity: 0.6;
+}
+
+main > span a:hover,
+main > span a:focus {
+  opacity: 1;
+}
+
+main > span a.active {
+  opacity: 1;
+  cursor: auto;
+}
+
+main > span a:first-of-type {
+  border-right: 2px solid rgba(25, 44, 71, 0.6);
+}
+
+main .serieGrid {
+  width: 100%;
+  max-width: 90em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+  grid-gap: 2em;
+  min-height: 80vh;
+  align-items: start;
+}
+
+main .serieGrid a {
+  cursor: pointer;
+  padding: 1em;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s all;
+  max-width: 18em;
+}
+
+main .serieGrid a:hover,
+main .serieGrid a:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+main .serieGrid div {
+  position: relative;
+}
+
+main .serieGrid div div{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 99%;
+  background-color: #192C47;
+  opacity: 0.9;
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  opacity: 0;
+}
+
+main .serieGrid div div img {
+  margin-top: 1em;
+  width: 40%;
+}
+
+main .serieGrid img {
+  border-radius: 5px;
+  width: 100%;
+}
+
+main .serieGrid .showMore.hover {
+  opacity: 0.6;
+}
+
+main .serieGrid h2 {
+  font-weight: 700;
+  font-size: 1em;
+  color: #192C47;
+  margin: 7px 0 5px 0;
+}
+
+main .serieGrid h3 {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #0093C6;
+  opacity: 0.7;
+  margin: 0;
+}
+
+#detailPage {
+  padding: 2em;
+  margin-left: 5vw;
+  background-color: #192C47;
+  border-radius: 5px;
+  position: fixed;
+  width: 90vw;
+  height: 96vh;
+  top: 100vh;
+  z-index: 4;
+  transition: top 600ms ease;
+  opacity: 0.3;
+}
+
+#detailPage.hover {
+  top: 94vh;
+  opacity: 0.8;
+}
+
+#detailPage.active {
+  opacity: 1;
+  top: 5vh;
+}
+
+#detailPage h2 {
+  color: white;
+  text-align: center;
+  opacity: 0.8;
+  margin-top: -0.2em;
+}
+
+#detailPage > span {
+  margin-top: -1.2em;
+  color: white;
+  font-size: 2em;
+  display: none;
+  position: absolute;
+  opacity: 0;
+  padding: 0.51em;
+}
+
+#detailPage.active > span {
+  display: block;
+  opacity: 1;
+}
+
+#detailPage .details, #detailPage img {
+float: left;
+}
+
+#detailPage .details {
+  width: 60%;
+  margin-left: 2em;
+}
+
+#detailPage p {
+  color: white;
+}
+
+.detailPageBack {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.4;
+  top: 0;
+  z-index: 3;
+}
+
+.detailPageBack.active {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
 }

@@ -4,14 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "gulp"
+    "start": "node server.js",
+    "dev": "gulp"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "node-fetch": "^2.1.1"
+    "node-fetch": "^2.1.1",
+    "object-sizeof": "^1.2.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "browser-sync": "^2.23.6",
