@@ -162,6 +162,11 @@ nav .search img[src="style/close.svg"] {
   font-size: 2em;
 }
 
+#hightlight .textOverlay a:hover {
+  color: red;
+  display: none;
+}
+
 #hightlight img {
   object-fit: cover;
   max-height: 60vh;
