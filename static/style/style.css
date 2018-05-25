@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100i,400,700');
-
 @font-face {
   font-family: Ampersand;
   src: local('Baskerville'), local('Goudy Old Style'), local('Palatino'), local('Book Antiqua');
@@ -43,7 +42,7 @@ body>nav label {
   cursor: pointer;
 }
 
-body>nav > section {
+body>nav>section {
   position: relative;
   display: flex;
   align-items: center;
@@ -84,7 +83,7 @@ body>nav input:first-of-type:checked+input {
   transition: opacity 0s ease 0s, width 300ms ease 0s, background-color 200ms ease 0s;
 }
 
-body>nav input:first-of-type:checked ~ span {
+body>nav input:first-of-type:checked~span {
   display: flex;
   align-items: center;
   width: 90vw;
@@ -97,7 +96,7 @@ body>nav input:first-of-type:checked ~ span {
   top: -1px;
 }
 
-body>nav input:first-of-type:checked ~ span span {
+body>nav input:first-of-type:checked~span span {
   visibility: hidden;
 }
 
@@ -164,25 +163,25 @@ body>section section {
   font-size: 2.1vw;
 }
 
-body>section  h2 {
+body>section h2 {
   margin-top: 0;
 }
 
-body>section  span {
+body>section span {
   font-family: Ampersand, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-body>section  h2:first-of-type {
+body>section h2:first-of-type {
   margin-bottom: 0;
   opacity: 0.8;
 }
 
-body>section  a {
+body>section a {
   color: inherit;
   font-size: 2em;
 }
 
-body>section  a:hover {
+body>section a:hover {
   color: red;
   display: none;
 }
@@ -266,13 +265,12 @@ main>section label {
 
 main>section label:hover {
   background-color: rgba(0, 0, 0, 0.2);
-  outline: none;  
+  outline: none;
 }
 
-main>section label:hover ~ label {
+main>section label:hover~label {
   /* filter: blur(1px); */
 }
-
 
 main>section img {
   border-radius: 5px;
@@ -298,16 +296,15 @@ main>section:not(:first-of-type) {
   display: none;
 }
 
-nav.active ~ main>section:first-of-type {
+nav.active~main>section:first-of-type {
   display: none;
 }
 
-
-nav.active ~ main>section:not(:first-of-type) {
+nav.active~main>section:not(:first-of-type) {
   display: flex;
 }
 
-main > section.search label {
+main>section.search label {
   cursor: not-allowed;
 }
 
@@ -362,7 +359,8 @@ main>section section:last-of-type h2 {
   text-align: center;
   opacity: 0.8;
   margin-bottom: 2em;
-  width: 100vw;;
+  width: 100vw;
+  ;
 }
 
 main>section section:last-of-type span {
@@ -381,8 +379,8 @@ main>section section:last-of-type img {
 }
 
 main>section section:last-of-type img:hover {
-filter: blur(5px);
-cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKeSURBVHhe7ZwtiFVRFEavIoKCYLBMEdEiqEWLcaJRg0YNTnTSxKkTTVaL1WI1Gi1jErRYNFgMoqAg4s+3cTY8hvHNfe/tc8/++RYsuJy6wuWDe89ACCGEEEIIIYSQxKzBa/8eiQeuwF/wMTwjB6QvEuTPnp/hJjwGSSdmg6iv4TokHTgoiPoUnoVkQuYFEb/DbXgCkgk4LIj6Dt6CpDFjg6jP4UVIGrFoEPEHfAhPQWLMMkHUj/AePAKJEasEUV/Cq5AYYBFE5No3wiqIyrW/ItZBVK79JWkVROXaX5DWQcRvkGt/JFMEUbn2RzBlEJVrfw49gohc+/+hVxCVa38fvYOoXPt7eAkicu0DT0FUWfsPYMm17zGIWnLtew6illr7EYKIZdZ+lCBq+rUfLYiadu1HDSKmXPuRg6iy9u/CFGs/QxA1xdrPFEQMv/azBVHDrv2sQdRwaz97EDXM2q8SRAyx9isFUWXt34QuqRhEdbn2KwcR3a396kHUD/Ac7A6DDMMLeBm6oHKQ9/AOdEXFIPIj6w48Cd1RLcgzeAG6pUqQt/AGdE/2IF/hFjwOQ5A1yG/4BMptR6HIGOQVvA5DkinIJ7gBj8KwZAjyEz6Cp2F4ogdxtbItiBrE5cq2IFoQXdlpPymNFMT9yrYgQpA3MMTKtsBzkHAr2wKPQcKubAu8BdmFYVe2BV6CpFjZFvQOkmplW9AziKzsS5DM0CNI2pVtwZRB0q9sC6YKIiv7PCSH0DpIqZVtQasgX2C5lW2BdZDSK9sCyyDlV7YFFkFkZd+H5Ve2BasE4cpuwLJBuLIbsWgQWdm3IWnE2CBc2RMxJghX9oTMC8KV3YGDgnBld2Q2CFe2AzQIV7YT5GXNlU0IIYQQQgghhBBC7BmGv1NtKYufawIxAAAAAElFTkSuQmCC'), auto;
+  filter: blur(5px);
+  cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKeSURBVHhe7ZwtiFVRFEavIoKCYLBMEdEiqEWLcaJRg0YNTnTSxKkTTVaL1WI1Gi1jErRYNFgMoqAg4s+3cTY8hvHNfe/tc8/++RYsuJy6wuWDe89ACCGEEEIIIYSQxKzBa/8eiQeuwF/wMTwjB6QvEuTPnp/hJjwGSSdmg6iv4TokHTgoiPoUnoVkQuYFEb/DbXgCkgk4LIj6Dt6CpDFjg6jP4UVIGrFoEPEHfAhPQWLMMkHUj/AePAKJEasEUV/Cq5AYYBFE5No3wiqIyrW/ItZBVK79JWkVROXaX5DWQcRvkGt/JFMEUbn2RzBlEJVrfw49gohc+/+hVxCVa38fvYOoXPt7eAkicu0DT0FUWfsPYMm17zGIWnLtew6illr7EYKIZdZ+lCBq+rUfLYiadu1HDSKmXPuRg6iy9u/CFGs/QxA1xdrPFEQMv/azBVHDrv2sQdRwaz97EDXM2q8SRAyx9isFUWXt34QuqRhEdbn2KwcR3a396kHUD/Ac7A6DDMMLeBm6oHKQ9/AOdEXFIPIj6w48Cd1RLcgzeAG6pUqQt/AGdE/2IF/hFjwOQ5A1yG/4BMptR6HIGOQVvA5DkinIJ7gBj8KwZAjyEz6Cp2F4ogdxtbItiBrE5cq2IFoQXdlpPymNFMT9yrYgQpA3MMTKtsBzkHAr2wKPQcKubAu8BdmFYVe2BV6CpFjZFvQOkmplW9AziKzsS5DM0CNI2pVtwZRB0q9sC6YKIiv7PCSH0DpIqZVtQasgX2C5lW2BdZDSK9sCyyDlV7YFFkFkZd+H5Ve2BasE4cpuwLJBuLIbsWgQWdm3IWnE2CBc2RMxJghX9oTMC8KV3YGDgnBld2Q2CFe2AzQIV7YT5GXNlU0IIYQQQgghhBBC7BmGv1NtKYufawIxAAAAAElFTkSuQmCC'), auto;
 }
 
 main>section section:last-of-type .details {
