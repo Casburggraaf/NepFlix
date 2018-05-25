@@ -5,79 +5,65 @@
     init: function() {
       autocomplete.init();
 
-      const serieItems = document.querySelectorAll(".serieGrid > a");
-      const detailPage = document.querySelector("#detailPage");
-      const detailPageBack = document.querySelector(".detailPageBack");
+      const serieItems = document.querySelectorAll("main label");
+      const detailPage = document.querySelector("main > section > section:last-child");
+      const checkBoxes = document.querySelectorAll("main input[type=checkbox]")
 
-      document.querySelector(".search img").addEventListener("click", function () {
-        console.log(this.getAttribute("src"));
+      document.querySelector("body > nav section img").addEventListener("click", function () {
         if(this.getAttribute("src") === "style/search.svg") {
+          // document.querySelector(".search").style.display = "flex";
           this.src = "style/close.svg";
-          document.querySelector(".serieGrid.popular").classList.toggle("hidden");
+          // document.querySelector(".popular").classList.toggle("hidden");
+          document.querySelector("body>nav input:first-of-type").checked = true;
         } else {
+          document.querySelector("body>nav input:first-of-type").click();
           this.src = "style/search.svg";
-          document.querySelector(".serieGrid.popular").classList.toggle("hidden");
+          // document.querySelector(".popular").classList.toggle("hidden");
+          document.querySelector("body>nav input:first-of-type").checked = false;
         }
-        document.querySelector("nav").classList.toggle("active");
-        document.querySelector(".autoComplete").innerHTML = "";
-        document.querySelector(".search input").focus();
+        document.querySelector("body>nav").classList.toggle("active");
+        document.querySelector("body>nav span").innerHTML = "";
+        document.querySelector("body>nav input:last-of-type").focus();
       });
 
-      document.querySelector("#detailPage .close").addEventListener("click", function () {
-        detailPage.classList.remove("active");
-        detailPageBack.classList.remove("active");
-      });
-
-      detailPageBack.addEventListener("click", function () {
-        detailPage.classList.remove("active");
-        detailPageBack.classList.remove("active");
-      });
-
-      window.onkeyup = function(e) {
-        if (document.querySelector("#detailPage").classList.contains("active")) {
-          let key = e.keyCode ? e.keyCode : e.which;
-          if (key === 27) {
-            detailPage.classList.remove("active");
-            detailPageBack.classList.remove("active");
-          }
+      document.querySelector("body>nav input:first-of-type").addEventListener("change", () => {
+        if(!document.querySelector("body>nav").classList.contains("active")){
+          document.querySelector("body > nav section img").click(); 
         }
-      };
-
-
+      });
 
       serieItems.forEach(function(el) {
         el.addEventListener("mouseenter", function () {
-          detailPage.classList.add("hover");
-          this.querySelector(".showMore").classList.add("hover");
           if (this.parentElement.classList.contains("popular")) {
-            document.querySelector("#detailPage h2").innerHTML = "";
-            document.querySelector("#detailPage h2").appendChild(document.createTextNode(window.data[this.dataset.id].original_name));
-            document.querySelector("#detailPage .vote").innerHTML = "";
-            document.querySelector("#detailPage .vote").appendChild(document.createTextNode(window.data[this.dataset.id].overview));
-            document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
-            document.querySelector("#detailPage .overview").innerHTML = "";
-            document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
-          } else if (this.parentElement.classList.contains("search")) {
-            //
-            // document.querySelector("#detailPage h2").innerHTML = "";
-            // document.querySelector("#detailPage h2").appendChild(document.createTextNode(search.dataParse[this.dataset.id].original_name));
-            // document.querySelector("#detailPage .vote").innerHTML = "";
-            // document.querySelector("#detailPage .vote").appendChild(document.createTextNode(search.dataParse[this.dataset.id].overview));
-            // document.querySelector("#detailPage img").src = `https://image.tmdb.org/t/p/w342${search.dataParse[this.dataset.id].poster_path}`;
-            // document.querySelector("#detailPage .overview").innerHTML = "";
-            // document.querySelector("#detailPage .overview").appendChild(document.createTextNode(`A avrage score of ${search.dataParse[this.dataset.id].vote_average} of votes ${search.dataParse[this.dataset.id].vote_count}`));
+            detailPage.querySelector("h2").innerHTML = "";
+            detailPage.querySelector("h2").appendChild(document.createTextNode(window.data[this.dataset.id].original_name));
+            detailPage.querySelector(".vote").innerHTML = "";
+            detailPage.querySelector(".vote").appendChild(document.createTextNode(window.data[this.dataset.id].overview));
+            detailPage.querySelector("img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
+            detailPage.querySelector(".overview").innerHTML = "";
+            detailPage.querySelector(".overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
           }
-
-        });
-        el.addEventListener("mouseleave", function () {
-          detailPage.classList.remove("hover");
-          this.querySelector(".showMore").classList.remove("hover");
-        });
-        el.addEventListener("click", function () {
-          detailPage.classList.add("active");
-          detailPageBack.classList.add("active");
         });
       });
+
+      checkBoxes.forEach(function(el) {
+        el.addEventListener("change", function () {
+         if(this.checked){
+           this.focus();
+          if (this.parentElement.classList.contains("popular")) {
+            detailPage.querySelector("h2").innerHTML = "";
+            detailPage.querySelector("h2").appendChild(document.createTextNode(window.data[this.dataset.id].original_name));
+            detailPage.querySelector(".vote").innerHTML = "";
+            detailPage.querySelector(".vote").appendChild(document.createTextNode(window.data[this.dataset.id].overview));
+            detailPage.querySelector("img").src = `https://image.tmdb.org/t/p/w342${window.data[this.dataset.id].poster_path}`;
+            detailPage.querySelector(".overview").innerHTML = "";
+            detailPage.querySelector(".overview").appendChild(document.createTextNode(`A avrage score of ${window.data[this.dataset.id].vote_average} of votes ${window.data[this.dataset.id].vote_count}`));
+          }
+        }
+       });
+
+      });
+
 
     }
   }
@@ -118,8 +104,8 @@
   }
 
   const autocomplete = {
-    inputField: document.querySelector(".search input"),
-    autoCompleteElement: document.querySelector(".search .autoComplete"),
+    inputField: document.querySelector("body>nav input:last-of-type"),
+    autoCompleteElement: document.querySelector("body>nav span"),
     inputValue: null,
     data: null,
     init() {
@@ -133,7 +119,10 @@
         if (key === 9) {
           e.preventDefault();
           this.autoComplete();
+        } else if (key === 27) {
+          document.querySelector("body > nav section img").click(); 
         }
+
       });
 
       this.inputField.addEventListener("input", (evt) => {
@@ -170,7 +159,7 @@
   }
 
   const search = {
-    target: document.querySelector(".serieGrid.search"),
+    target: document.querySelector(".search"),
     data: null,
     dataParse: null,
     transparency() {

@@ -11,70 +11,60 @@
   </script>
 </head>
 <body>
+
   <nav>
     <img src="style/logo.svg" alt="">
-    <div class="search">
+    <section>
+      <input type="checkbox" for="search" tabindex="1">
       <input type="text" name="" value="" placeholder="What serie are you looking for?">
-      <span class="autoComplete"></span>
-      <img src="style/search.svg" alt="">
-    </div>
+      <span></span>
+      <label id="search">
+       <img src="style/search.svg" alt="searchIcon">
+      </label>
+    </section>
   </nav>
 
   <% { let random = Math.floor(Math.random() * data.length) %>
-      <section id="hightlight">
+      <section>
         <section class="textOverlay">
-          <h2>New In Popular</h2>
+          <h2>New <span>&</span> Popular</h2>
           <h2><a href="/detail/<%=data[random].id%>" ><%=data[random].original_name%></a></h2>
         </section>
         <img src="https://image.tmdb.org/t/p/original/<%=data[random].backdrop_path%>" alt="">
       </section>
   <% } %>
+
   <main>
-    <span><a class="active" href="#">Popular</a><a href="#">Releases date</a></span>
-    <div class="serieGrid popular">
+    <nav><a href="#">Popular</a><a href="#">Releases date</a></nav>
+
+    <section class="popular">
       <% for(let i = 0; i < data.length; i++){ %>
-        <a tabindex="<%= i + 1 %>" data-id="<%= i %>">
-          <div>
-            <div class="showMore">
-              <span>show more</span>
-              <img src="style/plus.svg">
-            </div>
-            <img alt="<%= data[i].name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>">
-          </div>
+        <input type="checkbox" id="serrie<%= i %>"  data-id="<%= i %>">
+        <label data-id="<%= i %>" for="serrie<%= i %>">
+          <img alt="<%= data[i].name%>"  src="https://image.tmdb.org/t/p/w342<%=data[i].poster_path %>" alt="Poster image <%= data[i].name%>">
           <h2><%= data[i].original_name %></h2>
           <h3>Vote average <%= data[i].vote_average %></h3>
-        </a>
+        </label>
       <% } %>
-    </div>
-    <div class="serieGrid search">
-      <a data-bind="link" data-id="">
-        <div>
-          <div class="showMore">
-            <span>show more</span>
-            <img src="style/plus.svg">
-          </div>
-          <img data-bind="poster_path" alt=""  src="">
+      <section>
+        <h2></h2>
+        <img src="" alt="">
+        <div class="details">
+          <p class="overview"></p>
+          <p class="vote"></p>
         </div>
+      </section>
+    </section>
+
+    <section class="serieGrid search">
+      <label data-bind="link" data-id="">
+        <img data-bind="poster_path" alt=""  src="">
         <h2 data-bind="title"></h2>
         <h3 data-bind="vote"></h3>
-      </a>
-    </div>
+      </label>
+    </section>
+  
   </main>
-
-  <section id="detailPage">
-    <span class="close">X</span>
-    <h2></h2>
-    <img src="" alt="">
-    <div class="details">
-      <p class="overview"></p>
-      <p class="vote"></p>
-    </div>
-  </section>
-
-  <div class="detailPageBack">
-
-  </div>
-
   <script src="js/transparency.min.js"></script>
   <script type="text/javascript" src="js/app.js" charset="utf-8"></script>
 </body>
