@@ -270,7 +270,7 @@ main>section label:hover {
 }
 
 main>section label:hover ~ label {
-  filter: blur(1px);
+  /* filter: blur(1px); */
 }
 
 
