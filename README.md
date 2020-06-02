@@ -14,11 +14,11 @@
 
 ### 📙 Overview
 
-NepFlix is a selfmade Netflix clone made for the cource Web-Design
+NepFlix is a selfmade Netflix clone made for the course Web-Design
 
 ## 🎨 Features
-* Prefetch all data on server
-* Made with accessibility as centerpice.
+* Pre-fetch all data on server
+* Made with accessibility as core value.
 * Tested multiple times on users with a disability
 
 ## 🚀 Installation
