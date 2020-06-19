@@ -39,6 +39,26 @@ Or run the application for development.
 $ npm run dev
 ```
 
+## 🧪🤓 Testing (Dutch)
+<img width="1225" alt="image" src="https://user-images.githubusercontent.com/373753/85111861-3450f680-b215-11ea-866b-54ba06f4d305.png">
+Voor het vak Web-Design werd de nadruk gelegd op het testen van gebruikers die het web gebruiken op een "alternative" manier. De gebruiker van mijn website was Marie. Marie kon door haar beperking niet kon horen.
+Bij het testen en gesprekken (via een doventolk) met Marie werd mij duidelijk aan welke eisen mijn website dient te voeldoen om de website geschikt te maken voor Marie.
+
+
+- Duidelijke interface zonder grote verandereningen in design of interface.
+- Weten wat je kan verwachten als je op een knop klikt.
+- Forgiving interface, je kan je actie ongedaan maken.
+
+
+Hierdoor heb ik meerdere aanpasingen gedaan aan mijn website.
+
+| Feedback | Aanpassingen |
+|-------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| Duidelijke interface zonder groete verandereningen. | Elke pagina had een eigen pagina en unieke interface. Na aanpassing was het overzicht van films, voor en na filtering, en zoeken van films in de zelfde pagina, interface en design |
+| Weten wat je kan verwachten als je op een knop drukt. | Marie maakt gebruik van een muis. Als je over de filmposters beweegt zie je een balk onder in het scherm verschijnen, deze komt vanuit de onderkant. Dit geeft het gevoel als je de poster aanklikt deze naar boven uitrolt.|
+| Forgiving interface, je kan je actie ongedaan maken. | Als je een filmposter aanklikt zie je een overzicht van de film. Je kan dit venster op meerdere manieren verlaten. Op het kruisje klikken, escape toets of overal buiten het vester klikken. |
+
+De complete test is te vinden via [deze link](https://drive.google.com/file/d/1EAUVwKzApvzSxRKXEfucGTnlwbHnEfVp/view?usp=sharing)
 
 ## 📜 License
 This software is licensed under the [MIT](https://github.com/nhnent/tui.editor/blob/master/LICENSE) © [Cas Burggraaf](https://github.com/CasBurggraaf)
